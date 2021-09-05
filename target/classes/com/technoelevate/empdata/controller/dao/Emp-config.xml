@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>									<!-- NEED TO REMOVE SCHEMA "p". IT IS NOT PRESENT / 404 FOR THIS URL -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" name="mytemplate">
+	<constructor-arg name="dataSource" ref="mydatasource"></constructor-arg>
+	
+	</bean>
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="mydatasource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql://127.0.0.1:3306/jdbcdatabase"/>
+	<property name="username" value="root"/>
+	<property name="password" value="root"/>
+	
+	</bean>
+	<bean class="com.technoelevate.empdata.controller.dao.EmployeeJdbcImp" name="myjdbcimp">
+	<property name="template"  ref="mytemplate"></property>
+	</bean>
+	
+	</beans>
